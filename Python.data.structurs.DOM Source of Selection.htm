@@ -1,0 +1,628 @@
+<div class="card"><div class="page-header">﷐<h1>Python Data Structures</h1></div><p>Data Structures are sets of data or items with specific properties that allows to handle said data. This article explains how to work with the main data structures available in python.
+</p><p><br>
+</p>
+<table id="toc" class="toc"><tbody><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Lists"><span class="tocnumber">2</span> <span class="toctext">Lists</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Creating_Lists_with_range.28.29"><span class="tocnumber">2.1</span> <span class="toctext">Creating Lists with range()</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Tuples"><span class="tocnumber">3</span> <span class="toctext">Tuples</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Dictionaries"><span class="tocnumber">4</span> <span class="toctext">Dictionaries</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Sets"><span class="tocnumber">5</span> <span class="toctext">Sets</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Reference_Guide"><span class="tocnumber">6</span> <span class="toctext">Reference Guide</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Further_reading"><span class="tocnumber">7</span> <span class="toctext">Further reading</span></a></li>
+</ul>
+</td></tr></tbody></table>
+<h2><span class="editsection">[<a href="/learn-scripts/index.php?title=Python_Data_Structures&amp;action=edit&amp;section=1" title="Edit section: Introduction">edit</a>]</span> <span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>The data structures in python can be grouped, roughly, in two types: sequences and sets. The sequences are ordered lists of items that can be accessed by their positions in the sequences; sets on the other hand don't have a specific order, and each item inside a set is unique.
+</p><p>Below a rather simple example that shows the difference between a sequence and a set:
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">list1 <span class="sy0">=</span> <span class="br0">[</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">2</span><span class="sy0">,</span> <span class="st0">"eggs"</span><span class="sy0">,</span> <span class="st0">"something"</span><span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> -<span class="nu0">5</span> <span class="sy0">,</span> <span class="nu0">2</span><span class="br0">]</span>
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">)</span>
+&nbsp;
+set1 <span class="sy0">=</span> <span class="br0">{</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">2</span><span class="sy0">,</span> <span class="st0">"eggs"</span><span class="sy0">,</span> <span class="st0">"something"</span><span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> -<span class="nu0">5</span> <span class="sy0">,</span> <span class="nu0">2</span><span class="br0">}</span>
+<span class="kw1">print</span><span class="br0">(</span>set1<span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>[1, 2, 'eggs', 'something', 0, -5, 2]
+set([0, 1, 2, 'eggs', 'something', -5])
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>To create both structures different delimiters are used. Also, sets remove duplicates. It is also possible to mutate one data structure into another, see the <a href="#Reference_Guide">reference guide</a> for more information.
+</p>
+<h2><span class="editsection">[<a href="/learn-scripts/index.php?title=Python_Data_Structures&amp;action=edit&amp;section=2" title="Edit section: Lists">edit</a>]</span> <span class="mw-headline" id="Lists">Lists</span></h2>
+<p>Lists are probably the most common data structure. They can be created as a <i>list</i> of comma-separated items delimited by squared brackets:
+</p>
+<p>
+</p><div class="example">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">a <span class="sy0">=</span> <span class="br0">[</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">2</span><span class="sy0">,</span> <span class="st0">'ham'</span><span class="sy0">,</span> <span class="st0">'eggs'</span><span class="sy0">,</span> -<span class="nu0">0.5</span><span class="br0">]</span></pre></div></div>
+</div>
+</div>
+<p></p>
+<p>The items in a list can be of different types, it's is also possible to create empty lists. This makes them very flexible containers.
+</p><p>The elements in a list can be accessed individually by the corresponding index or position. The first element has index 0.
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">a <span class="sy0">=</span> <span class="br0">[</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">2</span><span class="sy0">,</span> <span class="st0">'ham'</span><span class="sy0">,</span> <span class="st0">'eggs'</span><span class="sy0">,</span> -<span class="nu0">0.5</span><span class="br0">]</span>
+&nbsp;
+<span class="co1"># This command will print the first element</span>
+<span class="kw1">print</span><span class="br0">(</span>a<span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># This command will print the third element</span>
+<span class="kw1">print</span><span class="br0">(</span>a<span class="br0">[</span><span class="nu0">2</span><span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># This command will print the last element</span>
+<span class="kw1">print</span><span class="br0">(</span>a<span class="br0">[</span>-<span class="nu0">1</span><span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># This command will print the second to last element</span>
+<span class="kw1">print</span><span class="br0">(</span>a<span class="br0">[</span>-<span class="nu0">2</span><span class="br0">]</span><span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>1
+ham
+-0.5
+eggs
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>As you can see from the previous example, the elements in a list can also be accessed backwards using negative indexes.
+</p><p>Below an example is presented that shows the most popular functions and methods supported by lists:
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">list1 <span class="sy0">=</span> <span class="br0">[</span><span class="st0">'a'</span><span class="sy0">,</span> <span class="st0">'b'</span><span class="sy0">,</span> <span class="st0">'c'</span><span class="br0">]</span>
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># len() returns the lenght of the list</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="kw2">len</span><span class="br0">(</span>list1<span class="br0">)</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># extend() can merge two lists</span>
+list2 <span class="sy0">=</span> <span class="br0">[</span><span class="st0">'d'</span><span class="sy0">,</span> <span class="st0">'e'</span><span class="sy0">,</span> <span class="st0">'f'</span><span class="br0">]</span>
+list1.<span class="me1">extend</span><span class="br0">(</span>list2<span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># insert(i,x) inserts an element x into an arbitrary position i</span>
+list1.<span class="me1">insert</span><span class="br0">(</span><span class="nu0">2</span><span class="sy0">,</span> <span class="st0">'z'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># remove(x) removes the first appearance of the element x</span>
+list1.<span class="me1">remove</span><span class="br0">(</span><span class="st0">'c'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># pop(i) deletes element from the position i</span>
+list1.<span class="me1">pop</span><span class="br0">(</span><span class="nu0">1</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># index(x) returns the index of the first appearence of the element x</span>
+a <span class="sy0">=</span> list1.<span class="me1">index</span><span class="br0">(</span><span class="st0">'f'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>a<span class="br0">)</span>
+&nbsp;
+<span class="co1"># count(x) counts how many times x appears</span>
+b <span class="sy0">=</span> list1.<span class="me1">count</span><span class="br0">(</span><span class="st0">'f'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>b<span class="br0">)</span>
+&nbsp;
+<span class="co1"># sort(x) sorts in ascending order the list </span>
+<span class="co1"># (only works with "sortable" elements)</span>
+list1.<span class="me1">sort</span><span class="br0">(</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># reverse() reverses the order of the elements in a list</span>
+list2 <span class="sy0">=</span> <span class="br0">[</span><span class="st0">'a'</span><span class="sy0">,</span> <span class="st0">'z'</span><span class="sy0">,</span> <span class="st0">'d'</span><span class="sy0">,</span> <span class="st0">'e'</span><span class="sy0">,</span> <span class="st0">'f'</span><span class="br0">]</span>
+list2.<span class="me1">reverse</span><span class="br0">(</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>list2<span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>['a', 'b', 'c']
+3
+['a', 'b', 'c', 'd', 'e', 'f']
+['a', 'b', 'z', 'c', 'd', 'e', 'f']
+['a', 'b', 'z', 'd', 'e', 'f']
+['a', 'z', 'd', 'e', 'f']
+4
+1
+['a', 'd', 'e', 'f', 'z']
+['f', 'e', 'd', 'z', 'a']
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>Lists can also be sliced, i.e. it is possible to get sublists out of the main list.
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">list1 <span class="sy0">=</span> <span class="br0">[</span><span class="st0">'a'</span><span class="sy0">,</span> <span class="st0">'b'</span><span class="sy0">,</span> <span class="st0">'z'</span><span class="sy0">,</span> <span class="st0">'c'</span><span class="sy0">,</span> <span class="st0">'d'</span><span class="sy0">,</span> <span class="st0">'e'</span><span class="sy0">,</span> <span class="st0">'f'</span><span class="br0">]</span>
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">)</span>
+&nbsp;
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">[</span>:<span class="nu0">3</span><span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">[</span><span class="nu0">1</span>:<span class="nu0">4</span><span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="kw1">print</span><span class="br0">(</span>list1<span class="br0">[</span><span class="nu0">3</span>:<span class="br0">]</span><span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>['a', 'b', 'z', 'c', 'd', 'e', 'f']
+['a', 'b', 'z']
+['b', 'z', 'c']
+['c', 'd', 'e', 'f']
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>Below a description of the relevant commands:
+</p>
+<ul><li> <code>list1 = ['a', 'b', 'z', 'c', 'd', 'e', 'f']</code> creates a list, as explained before.
+</li><li> <code>list1[:3]</code> creates a sublist that includes the elements whose indexes are in the range 0-2. Notice that the element with index 3 is not included.
+</li><li> <code>list1[1:4]</code> creates a sublist whose elements are those with indexes in the range 1-3. Again, the upper index, 4, is not included.
+</li><li> <code>list1[3:]</code> creates a sublist that contains as first element that with index 3 up to the last element in the original list.
+</li></ul>
+<p>A very special characteristic about lists is that, unlike other types of data in python, they have to be explicitly copied. Below an example that will not work as expected.
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1"><span class="co1"># create and print a list</span>
+list_a <span class="sy0">=</span> <span class="br0">[</span><span class="st0">'a'</span><span class="sy0">,</span> <span class="st0">'b'</span><span class="sy0">,</span> <span class="st0">'z'</span><span class="sy0">,</span> <span class="st0">'c'</span><span class="sy0">,</span> <span class="st0">'d'</span><span class="sy0">,</span> <span class="st0">'e'</span><span class="sy0">,</span> <span class="st0">'f'</span><span class="br0">]</span>
+<span class="kw1">print</span><span class="br0">(</span>list_a<span class="br0">)</span>
+&nbsp;
+<span class="co1"># make list_b equal to list_a</span>
+list_b <span class="sy0">=</span> list_a
+&nbsp;
+<span class="co1"># Delete the third element from list_b</span>
+list_b.<span class="me1">pop</span><span class="br0">(</span><span class="nu0">2</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># print list_a</span>
+<span class="kw1">print</span><span class="br0">(</span>list_a<span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>['a', 'b', 'z', 'c', 'd', 'e', 'f']
+['a', 'b', 'c', 'd', 'e', 'f']
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>As you see, <code>list_a</code> and <code>list_b</code> are different names for the same thing. If one of them is changed, those changes will affect the other one. The correct method to make a copy is to use <code>list()</code> or, in some cases, <code>deepcopy()</code>.
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1"><span class="co1">## Method 1</span>
+&nbsp;
+<span class="co1"># create and print a list</span>
+list_a <span class="sy0">=</span> <span class="br0">[</span><span class="st0">'a'</span><span class="sy0">,</span> <span class="st0">'b'</span><span class="sy0">,</span> <span class="st0">'z'</span><span class="sy0">,</span> <span class="st0">'c'</span><span class="sy0">,</span> <span class="st0">'d'</span><span class="sy0">,</span> <span class="st0">'e'</span><span class="sy0">,</span> <span class="st0">'f'</span><span class="br0">]</span>
+<span class="kw1">print</span><span class="br0">(</span>list_a<span class="br0">)</span>
+&nbsp;
+<span class="co1"># make a copy of list_a</span>
+list_b <span class="sy0">=</span> <span class="kw2">list</span><span class="br0">(</span>list_a<span class="br0">)</span>
+&nbsp;
+<span class="co1"># Delete the third element from list_b</span>
+list_b.<span class="me1">pop</span><span class="br0">(</span><span class="nu0">2</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># print list_a</span>
+<span class="kw1">print</span><span class="br0">(</span>list_a<span class="br0">)</span>
+&nbsp;
+<span class="co1"># print list_b</span>
+<span class="kw1">print</span><span class="br0">(</span>list_b<span class="br0">)</span>
+&nbsp;
+&nbsp;
+<span class="co1">## Method 2. An external function is needed</span>
+<span class="kw1">from</span> <span class="kw3">copy</span> <span class="kw1">import</span> deepcopy
+&nbsp;
+<span class="co1"># Create list_a</span>
+list_a <span class="sy0">=</span> <span class="br0">[</span><span class="st0">'a'</span><span class="sy0">,</span> <span class="st0">'b'</span><span class="sy0">,</span> <span class="st0">'z'</span><span class="sy0">,</span> <span class="st0">'c'</span><span class="sy0">,</span> <span class="st0">'d'</span><span class="sy0">,</span> <span class="st0">'e'</span><span class="sy0">,</span> <span class="st0">'f'</span><span class="br0">]</span>
+&nbsp;
+<span class="co1"># Make a deep copy into list_b</span>
+list_b <span class="sy0">=</span> deepcopy<span class="br0">(</span>list_a<span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>['a', 'b', 'z', 'c', 'd', 'e', 'f']
+['a', 'b', 'z', 'c', 'd', 'e', 'f']
+['a', 'b', 'c', 'd', 'e', 'f']
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p><br>
+</p>
+<h3><span class="editsection">[<a href="/learn-scripts/index.php?title=Python_Data_Structures&amp;action=edit&amp;section=3" title="Edit section: Creating Lists with range()">edit</a>]</span> <span class="mw-headline" id="Creating_Lists_with_range.28.29">Creating Lists with <code>range()</code></span></h3>
+<p>There's a special command to create a sequence of numbers and store them in a list, this method is mainly used in the <a href="/learn/Flow_Control_Statements_in_Python#The_for_loop" title="Flow Control Statements in Python"><code>for</code> loop</a>.
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">a <span class="sy0">=</span> <span class="kw2">range</span><span class="br0">(</span><span class="nu0">8</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>a<span class="br0">)</span>
+&nbsp;
+b <span class="sy0">=</span> <span class="kw2">range</span><span class="br0">(</span>-<span class="nu0">2</span><span class="sy0">,</span><span class="nu0">5</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>b<span class="br0">)</span>
+&nbsp;
+c <span class="sy0">=</span> <span class="kw2">range</span><span class="br0">(</span><span class="nu0">7</span><span class="sy0">,</span> <span class="nu0">700</span><span class="sy0">,</span> <span class="nu0">70</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>c<span class="br0">)</span>
+&nbsp;
+d <span class="sy0">=</span> <span class="kw2">range</span><span class="br0">(</span><span class="nu0">10</span><span class="sy0">,</span> <span class="nu0">1</span><span class="sy0">,</span> -<span class="nu0">1</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>d<span class="br0">)</span>
+&nbsp;
+e <span class="sy0">=</span> <span class="kw2">range</span><span class="br0">(</span><span class="nu0">10</span><span class="sy0">,</span> <span class="nu0">1</span><span class="sy0">,</span> -<span class="nu0">2</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>e<span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>[0, 1, 2, 3, 4, 5, 6, 7]
+[-2, -1, 0, 1, 2, 3, 4]
+[7, 77, 147, 217, 287, 357, 427, 497, 567, 637]
+[10, 9, 8, 7, 6, 5, 4, 3, 2]
+[10, 8, 6, 4, 2]
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>The command <code>range()</code> can take up to three integer arguments, if only one positive integer is used it creates a list from 0 to said argument, if two arguments are passed (the first less than the second) a list of consecutive numbers is created, finally a third argument gives the possibility of specifying the distance between consecutive elements. In the latter case the length can be negative, opening the possibility of lists in descending order, as shown in the example. 
+</p><p><br>
+</p>
+<h2><span class="editsection">[<a href="/learn-scripts/index.php?title=Python_Data_Structures&amp;action=edit&amp;section=4" title="Edit section: Tuples">edit</a>]</span> <span class="mw-headline" id="Tuples">Tuples</span></h2>
+<p>Tuples are data structures very similar to lists, but way more rigid. Tuples can not be altered: you can not delete, nor change the elements within. This type of structure is slightly faster than a list and is recommended when the programmer is certain that the data won't be altered.
+</p><p>Tuples are created as a comma-separated list of items, you can either use round brackets (parentheses) as delimiters or totally omit them. One must be careful when working with single-element tuples:
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1"><span class="co1"># Tuples with no delimiters</span>
+t1 <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">,</span><span class="nu0">2</span><span class="sy0">,</span><span class="nu0">5</span><span class="sy0">,</span><span class="st0">'a'</span><span class="sy0">,</span><span class="st0">'b'</span>
+<span class="kw1">print</span><span class="br0">(</span>t1<span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="kw2">type</span><span class="br0">(</span>t1<span class="br0">)</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># Tuples with delimiters</span>
+t2 <span class="sy0">=</span> <span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">2</span><span class="sy0">,</span><span class="nu0">5</span><span class="sy0">,</span><span class="st0">'a'</span><span class="sy0">,</span><span class="st0">'b'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>t2<span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="kw2">type</span><span class="br0">(</span>t2<span class="br0">)</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># Single-element tuple, no delimiters</span>
+t3 <span class="sy0">=</span> <span class="st0">'element'</span><span class="sy0">,</span>
+<span class="kw1">print</span><span class="br0">(</span>t3<span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="kw2">type</span><span class="br0">(</span>t3<span class="br0">)</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># Single element, not a tuple</span>
+t4 <span class="sy0">=</span> <span class="br0">(</span><span class="st0">'element'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>t4<span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="kw2">type</span><span class="br0">(</span>t4<span class="br0">)</span><span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>(1, 2, 5, 'a', 'b')
+&lt;type 'tuple'&gt;
+(1, 2, 5, 'a', 'b')
+&lt;type 'tuple'&gt;
+('element',)
+&lt;type 'tuple'&gt;
+element
+&lt;type 'str'&gt;
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>The last "tuple" is actually a <i>string</i>, this is because no comma was appended at the end of the element.
+</p><p>Just like <a href="#Lists">lists</a>, tuples can be sliced, the function <code>len()</code> will also work and it is possible to access an element by the corresponding index too.
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1"><span class="co1"># Create a tuple and "name" it t1</span>
+t1 <span class="sy0">=</span> <span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">2</span><span class="sy0">,</span><span class="nu0">5</span><span class="sy0">,</span><span class="st0">'a'</span><span class="sy0">,</span><span class="st0">'b'</span><span class="sy0">,</span><span class="st0">'c'</span><span class="sy0">,</span><span class="st0">'d'</span><span class="sy0">,</span><span class="st0">'f'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>t1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># len() will print the length of the tuple</span>
+lenght_t1 <span class="sy0">=</span> <span class="kw2">len</span><span class="br0">(</span>t1<span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>lenght_t1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># Print the third element</span>
+<span class="kw1">print</span><span class="br0">(</span>t1<span class="br0">[</span><span class="nu0">2</span><span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># Print elements whose indexes are in the range 0-3</span>
+<span class="kw1">print</span><span class="br0">(</span>t1<span class="br0">[</span>:<span class="nu0">4</span><span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># Print elements whose indexes are in the range 5-last</span>
+<span class="kw1">print</span><span class="br0">(</span>t1<span class="br0">[</span><span class="nu0">5</span>:<span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="co1"># Print elements whose indexes are in the range 2-4</span>
+<span class="kw1">print</span><span class="br0">(</span>t1<span class="br0">[</span><span class="nu0">2</span>:<span class="nu0">5</span><span class="br0">]</span><span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>(1, 2, 5, 'a', 'b', 'c', 'd', 'f')
+8
+5
+(1, 2, 5, 'a')
+('c', 'd', 'f')
+(5, 'a', 'b')
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p><br>
+</p>
+<h2><span class="editsection">[<a href="/learn-scripts/index.php?title=Python_Data_Structures&amp;action=edit&amp;section=5" title="Edit section: Dictionaries">edit</a>]</span> <span class="mw-headline" id="Dictionaries">Dictionaries</span></h2>
+<p>Dictionaries are very much like lists, but its elements instead of having an index can be accessed by a <i>key</i>. Lists are created as a comma-separated list of pairs <code>key:element</code>, delimited by curly brackets (braces).
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1"><span class="co1"># Create and print a dictionary</span>
+dict1 <span class="sy0">=</span> <span class="br0">{</span><span class="st0">'jack'</span>: <span class="nu0">92</span><span class="sy0">,</span> <span class="st0">'irv'</span>: <span class="nu0">84</span><span class="sy0">,</span> <span class="st0">'beth'</span>: <span class="nu0">94</span><span class="br0">}</span>
+<span class="kw1">print</span><span class="br0">(</span>dict1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># Print the element whose key is 'beth'</span>
+<span class="kw1">print</span><span class="br0">(</span>dict1<span class="br0">[</span><span class="st0">'beth'</span><span class="br0">]</span><span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>{'beth': 94, 'jack': 92, 'irv': 84}
+94
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>Some useful things to know about dictionaries is that the keys, as well as the elements can be accessed as separate lists, or even one by one in a <a href="/learn/Flow_Control_Statements_in_Python#The_for_loop" title="Flow Control Statements in Python"> <code>for</code> loop</a>
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1"><span class="co1"># Create and print a dictionary</span>
+dict1 <span class="sy0">=</span> <span class="br0">{</span><span class="st0">'jack'</span>: <span class="nu0">92</span><span class="sy0">,</span> <span class="st0">'irv'</span>: <span class="nu0">84</span><span class="sy0">,</span> <span class="st0">'beth'</span>: <span class="nu0">94</span><span class="br0">}</span>
+<span class="kw1">print</span><span class="br0">(</span>dict1<span class="br0">)</span>
+&nbsp;
+<span class="co1"># Print an array with the keys only</span>
+keys_list <span class="sy0">=</span> dict1.<span class="me1">keys</span><span class="br0">(</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>keys_list<span class="br0">)</span>
+&nbsp;
+<span class="co1"># Print an array with the values only</span>
+values_list <span class="sy0">=</span> dict1.<span class="me1">values</span><span class="br0">(</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>values_list<span class="br0">)</span>
+&nbsp;
+<span class="co1"># Print a dictionary as a list of tuples</span>
+dict_as_list <span class="sy0">=</span> dict1.<span class="me1">items</span><span class="br0">(</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>dict_as_list<span class="br0">)</span>
+&nbsp;
+&nbsp;
+<span class="kw1">for</span> key <span class="kw1">in</span> dict1:
+    value <span class="sy0">=</span> dict1<span class="br0">[</span>key<span class="br0">]</span>
+    <span class="kw1">print</span><span class="br0">(</span><span class="st0">'the key is&nbsp;%s and the corresponding value is&nbsp;%s'</span>&nbsp;% <span class="br0">(</span>key<span class="sy0">,</span>value<span class="br0">)</span><span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>{'beth': 94, 'jack': 92, 'irv': 84}
+94
+['beth', 'jack', 'irv']
+[94, 92, 84]
+[('beth', 94), ('jack', 92), ('irv', 84)]
+the key is beth and the corresponding value is 94
+the key is jack and the corresponding value is 92
+the key is irv and the corresponding value is 84
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>Below a description of the commands:
+</p>
+<ul><li> <code>keys_list = dict1.keys()</code> creates a list with the keys from the dictionary <code>dict1</code>
+</li></ul>
+<ul><li> <code>values_list = dict1.values()</code> creates a list with the values from the dictionary <code>dict1</code>
+</li></ul>
+<ul><li> <code>dict_as_list = dict1.items()</code> creates a list of tuples, each tuple is a pair whose first element is the key and the second element is the value.
+</li></ul>
+<p><br>
+</p>
+<h2><span class="editsection">[<a href="/learn-scripts/index.php?title=Python_Data_Structures&amp;action=edit&amp;section=6" title="Edit section: Sets">edit</a>]</span> <span class="mw-headline" id="Sets">Sets</span></h2>
+<p>Sets are data structures that pretty much behave like sets in the mathematical sense, they can not contain the same element more than once and the elements have no special order. Sets can be created by the <code>set()</code> function out of either a list or a tuple.
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">set_A <span class="sy0">=</span> <span class="kw2">set</span><span class="br0">(</span><span class="br0">[</span><span class="st0">"a"</span><span class="sy0">,</span> <span class="st0">"b"</span><span class="sy0">,</span> <span class="st0">"c"</span><span class="sy0">,</span> <span class="nu0">15</span><span class="sy0">,</span> <span class="st0">"a"</span><span class="br0">]</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>set_A<span class="br0">)</span>
+set_B <span class="sy0">=</span> <span class="kw2">set</span><span class="br0">(</span><span class="br0">(</span><span class="st0">"r"</span><span class="sy0">,</span> <span class="st0">"x"</span><span class="sy0">,</span> <span class="nu0">13</span><span class="sy0">,</span> <span class="nu0">15</span><span class="sy0">,</span> <span class="st0">"e"</span><span class="sy0">,</span> <span class="st0">"a"</span><span class="br0">)</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span>set_B<span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>set(['a', 'c', 'b', 15])
+set(['a', 'e', 13, 15, 'r', 'x'])
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>The most common mathematical operations between sets are supported:
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">set_A <span class="sy0">=</span> <span class="kw2">set</span><span class="br0">(</span><span class="br0">[</span><span class="st0">"a"</span><span class="sy0">,</span> <span class="st0">"b"</span><span class="sy0">,</span> <span class="st0">"c"</span><span class="sy0">,</span> <span class="nu0">15</span><span class="sy0">,</span> <span class="st0">"a"</span><span class="br0">]</span><span class="br0">)</span>
+set_B <span class="sy0">=</span> <span class="kw2">set</span><span class="br0">(</span><span class="br0">(</span><span class="st0">"r"</span><span class="sy0">,</span> <span class="st0">"x"</span><span class="sy0">,</span> <span class="nu0">13</span><span class="sy0">,</span> <span class="nu0">15</span><span class="sy0">,</span> <span class="st0">"e"</span><span class="sy0">,</span> <span class="st0">"a"</span><span class="br0">)</span><span class="br0">)</span>
+&nbsp;
+<span class="kw1">print</span><span class="br0">(</span><span class="st0">'the union is&nbsp;%s'</span>&nbsp;% <span class="br0">(</span>set_A | set_B<span class="br0">)</span><span class="br0">)</span>
+&nbsp;
+<span class="kw1">print</span><span class="br0">(</span><span class="st0">'the intersection is&nbsp;%s'</span>&nbsp;% <span class="br0">(</span>set_A &amp; set_B<span class="br0">)</span><span class="br0">)</span>
+&nbsp;
+<span class="kw1">print</span><span class="br0">(</span><span class="st0">'the symmetric difference is&nbsp;%s'</span>&nbsp;% <span class="br0">(</span>set_A ^ set_B<span class="br0">)</span><span class="br0">)</span>
+&nbsp;
+<span class="kw1">print</span><span class="br0">(</span><span class="st0">'the difference is&nbsp;%s'</span>&nbsp;% <span class="br0">(</span>set_A - set_B<span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>set(['a', 'c', 'b', 15])
+set(['a', 'e', 13, 15, 'r', 'x'])
+the union is set(['a', 'c', 'b', 'e', 13, 15, 'r', 'x'])
+the intersection is set(['a', 15])
+the symmetric difference is set(['c', 'r', 'e', 'x', 'b', 13])
+the difference is set(['c', 'b'])
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<p>It is also possible to use <a href="/learn/Flow_Control_Statements_in_Python#The_for_loop" title="Flow Control Statements in Python"><code>for</code></a> to access the elements in a set.
+</p>
+<p>
+</p><div class="example">
+<div style="width: 50%; display: inline-block; vertical-align: top;">
+<div class="code">
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="python source-python"><pre class="de1">set_A <span class="sy0">=</span> <span class="kw2">set</span><span class="br0">(</span><span class="br0">[</span><span class="st0">"a"</span><span class="sy0">,</span> <span class="st0">"b"</span><span class="sy0">,</span> <span class="st0">"c"</span><span class="sy0">,</span> <span class="nu0">15</span><span class="sy0">,</span> <span class="st0">"a"</span><span class="br0">]</span><span class="br0">)</span>
+&nbsp;
+<span class="kw1">for</span> element <span class="kw1">in</span> set_A:
+    <span class="kw1">print</span><span class="br0">(</span>element<span class="br0">)</span></pre></div></div>
+</div>
+</div>
+<div style="width: 49%; display: inline-block; vertical-align: top;">
+<div class="output">
+<div class="header">Output</div>
+<pre>a
+c
+b
+15
+</pre>
+</div>
+</div>
+</div>
+<p></p>
+<h2><span class="editsection">[<a href="/learn-scripts/index.php?title=Python_Data_Structures&amp;action=edit&amp;section=7" title="Edit section: Reference Guide">edit</a>]</span> <span class="mw-headline" id="Reference_Guide">Reference Guide</span></h2>
+<p>Conversion between different python data structures, the statement in the diagonal shows how to create the corresponding data structure, the other entries in the same row show how to convert said structure into the type indicated by the column label. The second line in each entry is the resulting data structure. Dictionaries are special because the corresponding data must be grouped in pairwise substructures.
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th> to list </th>
+<th> to tuple </th>
+<th> to dictionary </th>
+<th> to set
+</th></tr>
+<tr>
+<td> <code>v1 = ['a', 1, 'b', 2]</code>
+</td>
+<td> <code>tuple(v1)
+</code><p><code>('a', 1, 'b', 2)</code>
+</p>
+</td>
+<td><code>dict([['a', 1], ['b', 2]])
+</code><p><code>{'a': 1, 'b': 2}</code>
+</p>
+</td>
+<td> <code>set(v1)
+</code><p><code>set(['a', 1, 2, 'b'])</code>
+</p>
+</td></tr>
+<tr>
+<td><code>list(v2)
+</code><p><code>['a', 1, 'b', 2]</code>
+</p>
+</td>
+<td><code>v2 = ('a', 1, 'b', 2)</code>
+</td>
+<td><code>dict( (('a', 1), ('b', 2)) )
+</code><p><code>{'a': 1, 'b': 2}
+</code>
+</p>
+</td>
+<td><code>set(v2)
+</code><p><code>set(['a', 1, 2, 'b'])</code>
+</p>
+</td></tr>
+<tr>
+<td><code>list(v3)
+</code><p><code>&lt;code&gt;['a', 'b']</code>
+</p>
+</td>
+<td><code>tuple(v3)
+</code><p><code>('a', 'b')</code>
+</p>
+</td>
+<td><code>v3 = {'a':1, 'b':2}</code>
+</td>
+<td><code>set(v3)
+</code><p><code>set(['a', 'b'])</code>﷯
+</p>
+</td></tr></tbody></table>
+<h2><span class="editsection">[<a href="/learn-scripts/index.php?title=Python_Data_Structures&amp;action=edit&amp;section=8" title="Edit section: Further reading">edit</a>]</span> <span class="mw-headline" id="Further_reading">Further reading</span></h2>
+<ul><li> <a href="/learn/Python_Basics" title="Python Basics">Python Basics</a>
+</li><li> <a href="/learn/Flow_Control_Statements_in_Python" title="Flow Control Statements in Python">Flow Control Statements in Python</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor visited node count: 482/1000000
+Preprocessor generated node count: 1452/1000000
+Post-expand include size: 5324/2097152 bytes
+Template argument size: 1340/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key mediawiki-mw_:pcache:idhash:1260-0!*!0!!en!*!* and timestamp 20160924185156 -->
+</div>
