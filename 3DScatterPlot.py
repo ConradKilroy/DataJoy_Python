@@ -8,7 +8,7 @@ import numpy as np
 
 # Now we read the data from a csv file with `genfromtxt()`.
 thedata = np.genfromtxt(
-                        'scatterdata.csv',      # file name
+                        '3DScatterPlot.csv',      # file name
                         delimiter='\t',         # column delimiter
                         dtype='int',            # data type
                         usecols = (0,1,2),      # use firs 3 columns only
